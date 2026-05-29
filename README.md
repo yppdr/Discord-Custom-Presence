@@ -43,6 +43,7 @@ L'application permet d'afficher un message custom, des images, des boutons Disco
    - Windows : `Discord Custom Presence Setup x.x.x.exe` ou version portable `.exe`.
    - macOS : `.dmg` ou `.zip`.
    - Linux : `.AppImage` ou `.deb`.
+   - Extension Chrome / Edge : `discord-custom-presence-chrome-extension.zip`.
 3. Installer ou lancer l'application.
 4. Verifier que l'application Discord desktop est ouverte.
 
@@ -137,6 +138,17 @@ Les boutons sont visibles par les autres utilisateurs sur votre profil Discord. 
 Le dossier `browser-extension/` contient une extension Manifest V3.
 
 ### Chrome / Edge
+
+Depuis une release GitHub :
+
+1. Telecharger `discord-custom-presence-chrome-extension.zip`.
+2. Extraire le fichier ZIP dans un dossier permanent.
+3. Ouvrir `chrome://extensions`.
+4. Activer **Developer mode**.
+5. Cliquer sur **Load unpacked**.
+6. Selectionner le dossier extrait.
+
+Depuis le code source :
 
 1. Ouvrir `chrome://extensions`.
 2. Activer **Developer mode**.
@@ -240,6 +252,12 @@ npm run dist
 ```
 
 Les fichiers generes sont dans `dist/`.
+
+Pour generer uniquement le ZIP de l'extension Chrome / Edge :
+
+```bash
+npm run extension:zip
+```
 
 Sur Windows, le projet desactive actuellement `signAndEditExecutable` pour permettre un build local non signe sans certificat.
 

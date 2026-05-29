@@ -1,6 +1,6 @@
 {
   "name": "discord-custom-presence",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Cross-platform desktop app to manage a custom Discord Rich Presence.",
   "main": "src/main.js",
   "author": {
@@ -14,6 +14,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "extension:zip": "node scripts/package-extension.js",
     "lint": "eslint ."
   },
   "dependencies": {
