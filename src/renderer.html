@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discord Custom Presence</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <h1>Discord Custom Presence</h1>
+          <p id="connectionText">Not connected</p>
+        </div>
+        <div class="status-panel">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Waiting for setup</span>
+        </div>
+        <nav>
+          <button class="tab active" data-tab="custom">Custom</button>
+          <button class="tab" data-tab="browser">Browser media</button>
+          <button class="tab" data-tab="setup">Setup</button>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <section class="toolbar">
+          <label>
+            Discord Client ID
+            <input id="clientId" placeholder="123456789012345678" />
+          </label>
+          <div class="actions">
+            <button id="saveButton">Save</button>
+            <button id="connectButton">Connect</button>
+            <button id="clearButton" class="secondary">Clear</button>
+          </div>
+        </section>
+
+        <section class="panel active" id="customPanel">
+          <div class="mode-row">
+            <label><input type="radio" name="mode" value="custom" /> Custom message</label>
+            <label><input type="radio" name="mode" value="browser" /> Browser media</label>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Details
+              <input id="details" maxlength="128" />
+            </label>
+            <label>
+              State
+              <input id="state" maxlength="128" />
+            </label>
+            <label>
+              Large image key or URL
+              <input id="largeImageKey" maxlength="256" />
+            </label>
+            <label>
+              Large image text
+              <input id="largeImageText" maxlength="128" />
+            </label>
+            <label>
+              Small image key or URL
+              <input id="smallImageKey" maxlength="256" />
+            </label>
+            <label>
+              Small image text
+              <input id="smallImageText" maxlength="128" />
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Button 1 label
+              <input id="button1Label" maxlength="32" />
+            </label>
+            <label>
+              Button 1 URL
+              <input id="button1Url" />
+            </label>
+            <label>
+              Button 2 label
+              <input id="button2Label" maxlength="32" />
+            </label>
+            <label>
+              Button 2 URL
+              <input id="button2Url" />
+            </label>
+          </div>
+        </section>
+
+        <section class="panel" id="browserPanel">
+          <div class="browser-grid">
+            <div>
+              <h2>Now playing</h2>
+              <dl id="nowPlaying">
+                <dt>Title</dt>
+                <dd>-</dd>
+                <dt>Artist</dt>
+                <dd>-</dd>
+                <dt>Source</dt>
+                <dd>-</dd>
+              </dl>
+            </div>
+            <div>
+              <h2>Extension status</h2>
+              <p>The desktop app listens on <code>127.0.0.1:38432</code>. Install the browser extension from <code>browser-extension/</code> in developer mode.</p>
+              <label>
+                Fallback details
+                <input id="fallbackDetails" maxlength="128" />
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="setupPanel">
+          <h2>Discord setup</h2>
+          <ol>
+            <li>Create an app in the Discord Developer Portal.</li>
+            <li>Copy its Application ID into the Client ID field.</li>
+            <li>Add image assets in Rich Presence Assets if you want stable named image keys.</li>
+            <li>Start Discord desktop, then press Connect.</li>
+          </ol>
+          <button id="portalButton" class="secondary">Open Discord Developer Portal</button>
+        </section>
+      </section>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

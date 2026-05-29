@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Discord Custom Presence Bridge",
+  "version": "0.1.0",
+  "description": "Sends browser media information to the Discord Custom Presence desktop app.",
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["http://127.0.0.1:38432/*", "https://*/*", "http://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Discord Custom Presence Bridge"
+  }
+}
