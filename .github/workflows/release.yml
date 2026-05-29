@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,17 +29,21 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build
-        run: npm run dist
+        run: npm run dist -- --publish never
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: discord-custom-presence-${{ matrix.os }}
+          if-no-files-found: error
           path: |
             dist/*.exe
             dist/*.dmg
@@ -60,3 +65,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: artifacts/**/*
+          generate_release_notes: true
