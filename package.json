@@ -1,9 +1,12 @@
 {
   "name": "discord-custom-presence",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cross-platform desktop app to manage a custom Discord Rich Presence.",
   "main": "src/main.js",
-  "author": "",
+  "author": {
+    "name": "Yannis Piot Pilot",
+    "email": "yannis@piotpilot.eu"
+  },
   "license": "MIT",
   "private": false,
   "scripts": {
