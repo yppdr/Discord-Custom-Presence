@@ -106,6 +106,9 @@ function buildActivity() {
         smallImageText: cleanText(settings.custom.smallImageText, 128)
       };
 
+  if (!activity.largeImageKey) delete activity.largeImageText;
+  if (!activity.smallImageKey) delete activity.smallImageText;
+
   const buttons = [];
   if (settings.custom.button1Label && settings.custom.button1Url) {
     buttons.push({ label: settings.custom.button1Label, url: settings.custom.button1Url });
@@ -145,8 +148,10 @@ async function connectRpc() {
 
   rpcClient.on('ready', async () => {
     rpcReady = true;
-    await updatePresence();
-    sendStatus('Connected to Discord.');
+    const result = await updatePresence();
+    if (!result.ok) {
+      sendStatus(`Connected, but presence update failed: ${result.message}`);
+    }
   });
 
   rpcClient.on('disconnected', () => {
@@ -168,8 +173,9 @@ async function updatePresence() {
 
   try {
     await rpcClient.setActivity(buildActivity());
-    sendStatus('Presence updated.');
-    return { ok: true, message: 'Presence updated.' };
+    const message = 'Presence sent to Discord.';
+    sendStatus(message);
+    return { ok: true, message };
   } catch (error) {
     sendStatus(error.message);
     return { ok: false, message: error.message };

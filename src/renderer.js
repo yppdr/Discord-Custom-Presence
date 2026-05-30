@@ -21,8 +21,10 @@ function byId(id) {
 
 function setStatus(payload) {
   byId('statusText').textContent = payload.message || 'Waiting';
-  byId('connectionText').textContent = payload.rpcReady ? 'Connected' : 'Not connected';
-  byId('statusDot').classList.toggle('ready', Boolean(payload.rpcReady));
+  if (typeof payload.rpcReady === 'boolean') {
+    byId('connectionText').textContent = payload.rpcReady ? 'Connected' : 'Not connected';
+    byId('statusDot').classList.toggle('ready', payload.rpcReady);
+  }
 
   if (payload.nowPlaying) {
     const values = [

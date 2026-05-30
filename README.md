@@ -326,6 +326,7 @@ Causes possibles :
 - Le nom de l'asset est mal ecrit.
 - Discord n'a pas encore fini de propager l'asset.
 - L'URL d'image n'est pas supportee par le client Discord.
+- Un texte d'image est renseigne sans image associee. Le texte au survol n'est utilise que si la cle ou l'URL de l'image correspondante est remplie.
 
 Solution recommandee :
 
